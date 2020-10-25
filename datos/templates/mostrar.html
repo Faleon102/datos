@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang = "es">
+   <head>
+     <title>Estudiantes</title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/default.css') }}">
+   </head>
+   <body>
+      <nav>
+         <a href = "{{ url_for('mostrar') }}">Mostrar todos los estudiantes</a> |
+         <a href = "{{ url_for('nuevo') }}">Agregar estudiantes</a>
+      </nav>
+
+      <aside>
+        {%- for message in get_flashed_messages() %}
+           {{ message }}
+        {%- endfor %}
+      </aside>
+      <section>      
+        <h3>Estudiantes</h3>
+
+        <table>
+           <thead>
+              <tr>
+                 <th>Primer nombre</th>
+                 <th>Segundo nombre</th>
+                 <th>Apellidos</th>
+                 <th>Ciudad</th>
+                 <th>Direccion</th>
+                 <th colspan="2">Opciones</th>
+              </tr>
+           </thead>
+
+           <tbody>
+              {% for estudiante in estudiantes %}
+                 <tr>
+                    <td>{{ estudiante.nombre1 }}</td>
+                    <td>{{ estudiante.nombre2 }}</td>
+                    <td>{{ estudiante.apellido }}</td>
+                    <td>{{ estudiante.ciudad }}</td>
+                    <td>{{ estudiante.direccion }}</td>
+                    <td>
+                      <form method="POST" action="/actualizar" style="display: inline">
+                        <input type="hidden" value="{{estudiante.nombre1}}" name="nombrev">
+                        <input type="submit" value="Actualizar">
+                      </form>
+                    </td>
+                    <td>
+                      <form method="POST" action="/delete" style="display: inline">
+                        <input type="hidden" value="{{estudiante.nombre1}}" name="nombrev">
+                        <input type="submit" value="Borrar">
+                      </form>
+                    </td>
+                 </tr>
+              {% endfor %}
+           </tbody>
+        </table>
+
+    </section>
+
+   </body>
+</html>

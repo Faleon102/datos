@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Actualizar</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/default.css') }}">
+</head>
+  <body>
+     <nav>
+        <a href = "{{ url_for('mostrar') }}">Mostrar todos los estudiantes</a> |
+        <a href = "{{ url_for('nuevo') }}">Agregar estudiantes</a>
+     </nav>
+     <section>
+       <h3>Actualizar datos</h3>
+      <form action = "/actualizar_record" method = "post">
+        <input type = "hidden" name = "nombrev" value = "{{ nombrev }}" /><br>
+         <label for = "nombre1">Primer nombre</label>
+         <input type = "text" name = "nombre1" value = "{{ result.nombre1 }}" /><br>
+         <label for = "nombre2">Segundo nombre</label>
+         <input type = "text" name = "nombre2" value = "{{ result.nombre2 }}" /><br>
+         <label for = "apellido">Apellidos</label>
+         <input type = "text" name = "apellido" value = "{{ result.apellido }}" /><br>
+         <label for = "ciudad">Ciudad</label>
+         <input type = "text" name = "ciudad" value = "{{ result.ciudad }}" /><br>
+         <label for = "direccion">Direccion</label>
+         <textarea name = "direccion" placeholder = "direccion">{{ result.direccion }}</textarea><br>
+         <input type = "submit" value = "Aceptar" />
+      </form>
+    </section>
+   </body>
+</html>
